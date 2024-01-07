@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Repertuar</title>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="repertuar.css">
+
+        <script>
+            $(function(){
+                $(document).on('click', '#arrow', function(){
+                    $('#menuPion').slideDown(300);
+                    $(this).replaceWith('<li id="x"><span>&#120;</span></li>');
+                });
+
+                $(document).on('click', '#x', function(){
+                    $('#menuPion').slideUp(300);
+                    $(this).replaceWith('<li id="arrow"><span>&#10163;</span></li>');
+                });
+            })
+
+            document.addEventListener('DOMContentLoaded', function () {
+            var currentDate = new Date();
+            var currentYear = currentDate.getFullYear();
+            var currentMonth = currentDate.getMonth();
+
+            function updateSelector() {
+                document.getElementById('year').innerText = currentYear;
+                document.getElementById('month').innerText = new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' });
+            }
+
+            function updateMonth(direction) {
+                if (direction === 'next') {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                } else {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                }
+
+                updateSelector();
+            }
+
+            document.getElementById('prev').addEventListener('click', function () {
+                updateMonth('prev');
+            });
+
+            document.getElementById('next').addEventListener('click', function () {
+                updateMonth('next');
+            });
+
+            updateSelector();
+            });
+        </script>
+    </head>
+    
+    <body>
+        <header>
+            <div id="logo">
+                <img src="dino.jpg" width=100px>
+            </div>
+            <h1>Repertuar</h1>
+            <nav>
+                <ul id="menuPoziom">
+                    <li><a href="#">Repertuar</a></li>
+                    <li><a href="#">Spektakle</a></li>
+                    <li><a href="#">Wydarzenia</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                    <li id="arrow"><span>&#10163;</span></li>
+                </ul>
+            </nav>
+        </header>
+
+        <ul id="menuPion">
+            <li><a href="#">Aktualności</a></li>
+            <li><a href="#">Bilety</a></li>
+            <li><a href="#">Aktorzy</a></li>
+            <li><a href="#">O teatrze</a></li>
+            <li><a href="#">Galeria</a></li>
+        </ul>
+
+        <main>
+
+        </main>
+    </body>
+</html>
